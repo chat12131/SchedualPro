@@ -1,0 +1,39 @@
+<div class="main-contener">
+  <div class="top-text">
+    <h2>予定一覧</h2>
+    <%= Date.today.strftime('%Y/%m/%d') %>
+  </div>
+  <div class="index-top">
+    <p class="index-right"> 予定合計数:<%= @count %></p>
+    <p class="index-new"> <%= link_to"予定追加",:new_schedual %> </p>
+  </div>
+  <div class="index">
+    <table class="index-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>タイトル</th>
+          <th>開始日</th>
+          <th>終了日</th>
+          <th>終日</th>
+          <th>更新日時</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @scheduals.each do |schedual| %>
+          <tr>
+            <td><%= schedual.id %></td>
+            <td><%= schedual.title %></td>
+            <td><%= schedual.start_date.strftime('%Y/%m/%d') %></td>
+            <td><%= schedual.end_date.strftime('%Y/%m/%d') %></td>
+            <td><% if schedual.full_day%>⚪︎<% end%></td>
+            <td><%= schedual.updated_at.in_time_zone('Tokyo').strftime('%Y/%m/%d %H:%M')%></td>
+            <td><%= link_to "詳細", schedual %></td> 
+            <td><%= link_to "編集", [:edit, schedual] %></td>
+            <td><%= link_to '削除', schedual, method: :delete, data:{ confirm: "本当に削除して良いですか?",cancel: "やめる",commit: "削除する"}, title: "削除確認"%></td>
+          </tr>
+        <% end %>
+       </tbody>
+    </table>
+  </div>
+</div>
