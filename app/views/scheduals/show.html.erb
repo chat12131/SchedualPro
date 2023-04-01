@@ -1,0 +1,32 @@
+<p class="show-back"><%= link_to "一覧に戻る", root_path %></p>
+<div class="show-contener">
+  
+  <div class="show">
+    <table>
+      <tr>
+        <th>タイトル</th>
+        <td><%= @schedual.title%></td>
+      </tr>
+      <tr>
+        <th>開始日</th>
+        <td><%= @schedual.start_date %></td>
+      </tr>
+      <tr>
+        <th>終了日</th>
+        <td><%= @schedual.end_date %></td>
+      </tr>
+      <tr>
+        <th>終日</th>
+        <td>
+        <% if @schedual.full_day %>⚪︎<% end %></td>
+      </tr>
+      <tr>
+        <th>メモ</th>
+        <td><%= @schedual.memo %></td>
+      </tr>
+    </table>
+    <div class="showe-edit">
+      <%= link_to "編集", [:edit, @schedual] %>
+    </div>
+  </div>
+</div>
